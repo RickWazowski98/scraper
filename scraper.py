@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup as soup
-from multiprocessing.pool import ThreadPool
+from multiprocessing.dummy import Pool as ThreadPool
 
 
 class NewsScraper():
@@ -42,6 +42,7 @@ class NewsScraper():
     def main(self):
         self.pool.map(self.get_themes_from_topic, self.get_topics_url())
         self.pool.close()
+        self.pool.join()
 
 
 if __name__ == '__main__':
